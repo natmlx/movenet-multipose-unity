@@ -1,4 +1,4 @@
-# MoveNet Sample
+# MoveNet Multipose Sample
 
 ![demo](demo.gif)
 
