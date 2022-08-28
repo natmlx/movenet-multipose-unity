@@ -1,0 +1,27 @@
+{
+    "name": "ai.natml.vision.movenet-multipose",
+    "version": "1.0.0",
+    "displayName": "MoveNet Multipose",
+    "description": "MediaPipe MoveNet multiple-pose detection in Unity Engine.",
+    "unity": "2020.3",
+    "dependencies": {
+        "ai.natml.natml": "1.0.17"
+    },
+    "keywords": [
+        "natml",
+        "machine learning",
+        "ml",
+        "aritificial intelligence",
+        "pose detection",
+        "mediapipe",
+        "face filters",
+        "fitness"
+    ],
+    "author": {
+        "name": "NatML",
+        "email": "hi@natml.ai",
+        "url": "https://github.com/natmlx"
+    },
+    "license": "Apache-2.0",
+    "repository": "github:natml-hub/MoveNet-Multipose"
+}

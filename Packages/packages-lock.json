@@ -1,36 +1,36 @@
 {
   "dependencies": {
     "ai.natml.hub": {
-      "version": "1.0.9",
-      "depth": 1,
+      "version": "1.0.12",
+      "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://registry.npmjs.com"
     },
     "ai.natml.natdevice": {
-      "version": "1.2.2",
+      "version": "1.2.3",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "ai.natml.hub": "1.0.8"
+        "ai.natml.hub": "1.0.10"
       },
       "url": "https://registry.npmjs.com"
     },
     "ai.natml.natml": {
-      "version": "1.0.13",
-      "depth": 0,
+      "version": "1.0.17",
+      "depth": 1,
       "source": "registry",
       "dependencies": {
-        "ai.natml.hub": "1.0.9"
+        "ai.natml.hub": "1.0.12"
       },
       "url": "https://registry.npmjs.com"
     },
     "ai.natml.vision.movenet-multipose": {
-      "version": "file:/Users/yusuf/Documents/Projects/NatML-API/Assets/ML/movenet-multipose",
+      "version": "file:ai.natml.vision.movenet-multipose",
       "depth": 0,
-      "source": "local",
+      "source": "embedded",
       "dependencies": {
-        "ai.natml.natml": "1.0.13"
+        "ai.natml.natml": "1.0.17"
       }
     },
     "com.unity.collab-proxy": {

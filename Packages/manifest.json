@@ -9,9 +9,7 @@
     }
   ],
   "dependencies": {
-    "ai.natml.natdevice": "1.2.2",
-    "ai.natml.natml": "1.0.13",
-    "ai.natml.vision.movenet-multipose": "file:/Users/yusuf/Documents/Projects/NatML-API/Assets/ML/movenet-multipose",
+    "ai.natml.natdevice": "1.2.3",
     "com.unity.collab-proxy": "1.15.17",
     "com.unity.feature.development": "1.0.1",
     "com.unity.ide.rider": "3.0.14",
