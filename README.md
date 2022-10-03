@@ -2,16 +2,27 @@
 
 ![demo](demo.gif)
 
-This is an example project which integrates the NatML deep learning API with the NatDevice media device API for realtime multi-pose detection with MoveNet.
+Multi-person pose detection from Google MediaPipe.
+
+## Running the Sample
+Retrieve your access key from [NatML Hub](https://hub.natml.ai/profile) and add it to your Project Settings. Note that running the sample code requires an active [NatML Cloud](https://www.natml.ai/pricing) subscription:
+
+![project settings](https://github.com/natmlx/NatDevice/raw/main/.media/key.png)
+
+## Using the Predictor in a Different Project
+[See the predictor README for more details](Packages/ai.natml.vision.movenet-multipose/README.md).
 
 ## Requirements
-- Unity 2020.3+
+- Unity 2021.2+
 
 ## Supported Platforms
 - Android API level 24+
 - iOS 13+
-- macOS 10.15+
-- Windows 10 (64-bit)
+- macOS 10.15+ (Apple Silicon and Intel)
+- Windows 10+ (64-bit only)
+- WebGL:
+    - Chrome 91+
+    - Firefox 90+
 
 ## Resources
 - Join the [NatML community on Discord](https://hub.natml.ai/community).

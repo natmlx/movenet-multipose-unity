@@ -9,7 +9,7 @@
     }
   ],
   "dependencies": {
-    "ai.natml.natdevice": "1.2.3",
+    "ai.natml.natdevice": "1.2.5",
     "com.unity.collab-proxy": "1.15.17",
     "com.unity.feature.development": "1.0.1",
     "com.unity.ide.rider": "3.0.14",
