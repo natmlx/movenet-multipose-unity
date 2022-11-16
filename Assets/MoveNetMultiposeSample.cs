@@ -6,66 +6,45 @@
 namespace NatML.Examples {
 
     using UnityEngine;
-    using NatML.Devices;
-    using NatML.Devices.Outputs;
-    using NatML.Features;
+    using NatML.VideoKit;
     using NatML.Vision;
     using Visualizers;
 
     public class MoveNetMultiposeSample : MonoBehaviour {
 
+        [Header(@"VideoKit")]
+        public VideoKitCameraManager cameraManager;
+
         [Header(@"UI")]
         public MoveNetMultiposeVisualizer visualizer;
-
-        private CameraDevice cameraDevice;
-        private TextureOutput previewTextureOutput;
 
         private MLModelData modelData;
         private MLModel model;
         private MoveNetMultiposePredictor predictor;
 
-        async void Start () {
-            // Request camera permissions
-            var permissionStatus = await MediaDeviceQuery.RequestPermissions<CameraDevice>();
-            if (permissionStatus != PermissionStatus.Authorized) {
-                Debug.LogError(@"User did not grant camera permissions");
-                return;
-            }
-            // Get the default camera device
-            var query = new MediaDeviceQuery(MediaDeviceCriteria.CameraDevice);
-            cameraDevice = query.current as CameraDevice;
-            // Start the camera preview
-            cameraDevice.previewResolution = (1280, 720);
-            previewTextureOutput = new TextureOutput();
-            cameraDevice.StartRunning(previewTextureOutput);
-            // Fetch the MoveNet model
-            Debug.Log("Fetching model from NatML...");
+        private async void Start () {
+            // Fetch the MoveNet Multipose model data
             modelData = await MLModelData.FromHub("@natml/movenet-multipose");
-            // Deserialize the model
-            model = modelData.Deserialize();
-            // Create the MoveNet predictor
+            // Create the model
+            model = new MLEdgeModel(modelData);
+            // Create the MoveNet Multipose predictor
             predictor = new MoveNetMultiposePredictor(model);
+            // Listen for camera frames
+            cameraManager.OnFrame.AddListener(OnCameraFrame);
         }
 
-        void Update () {
-            // Check that the predictor has been created
-            if (predictor == null)
-                return;
-            // Create the input feature
-            var previewTexture = previewTextureOutput.texture;
-            var inputFeature = new MLImageFeature(
-                previewTexture.GetRawTextureData<byte>(),
-                previewTexture.width,
-                previewTexture.height
-            );
-            (inputFeature.mean, inputFeature.std) = modelData.normalization;
-            // Detect
-            var poses = predictor.Predict(inputFeature);
+        private void OnCameraFrame (CameraFrame frame) {
+            // Predict
+            var feature = frame.feature;
+            (feature.mean, feature.std) = modelData.normalization;
+            var poses = predictor.Predict(feature);
             // Visualize
-            visualizer.Visualize(previewTexture, poses);
+            visualizer.Render(poses);
         }
 
-        void OnDisable () {
+        private void OnDisable () {
+            // Stop listening for camera frames
+            cameraManager.OnFrame.RemoveListener(OnCameraFrame);
             // Dispose model
             model?.Dispose();
         }

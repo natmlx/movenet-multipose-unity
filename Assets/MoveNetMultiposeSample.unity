@@ -305,6 +305,7 @@ GameObject:
   - component: {fileID: 757436790}
   - component: {fileID: 757436789}
   - component: {fileID: 757436791}
+  - component: {fileID: 757436793}
   - component: {fileID: 757436792}
   m_Layer: 5
   m_Name: RawImage
@@ -396,6 +397,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodyRect: {fileID: 407789003}
   keypoint: {fileID: 1085039466}
+--- !u!114 &757436793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757436787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 145a5a333d6e14379ae91956c0b3373e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraManager: {fileID: 1001128443}
+  viewMode: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,6 +504,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1001128441}
+  - component: {fileID: 1001128443}
   - component: {fileID: 1001128442}
   m_Layer: 0
   m_Name: MoveNetMultiposeSample
@@ -524,7 +540,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e76b2140702f40fc95129d6a585c9c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraManager: {fileID: 1001128443}
   visualizer: {fileID: 757436792}
+--- !u!114 &1001128443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001128439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98622613d505143a9a06b4b11b0a82cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolution: 3
+  capabilities: 1
+  playOnAwake: 1
+  focusMode: 0
+  exposureMode: 0
+  OnFrame:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1085039465
 GameObject:
   m_ObjectHideFlags: 0
