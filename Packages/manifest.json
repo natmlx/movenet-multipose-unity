@@ -9,7 +9,7 @@
     }
   ],
   "dependencies": {
-    "ai.natml.videokit": "0.0.3",
+    "ai.natml.videokit": "0.0.7",
     "com.unity.collab-proxy": "1.15.17",
     "com.unity.feature.development": "1.0.1",
     "com.unity.ide.rider": "3.0.14",

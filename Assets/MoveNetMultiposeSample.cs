@@ -1,6 +1,6 @@
 /*
 *   MoveNet Multipose
-*   Copyright (c) 2022 NatML Inc. All Rights Reserved.
+*   Copyright © 2023 NatML Inc. All Rights Reserved.
 */
 
 namespace NatML.Examples {
@@ -30,7 +30,7 @@ namespace NatML.Examples {
             // Create the MoveNet Multipose predictor
             predictor = new MoveNetMultiposePredictor(model);
             // Listen for camera frames
-            cameraManager.OnFrame.AddListener(OnCameraFrame);
+            cameraManager.OnCameraFrame.AddListener(OnCameraFrame);
         }
 
         private void OnCameraFrame (CameraFrame frame) {
@@ -44,7 +44,7 @@ namespace NatML.Examples {
 
         private void OnDisable () {
             // Stop listening for camera frames
-            cameraManager.OnFrame.RemoveListener(OnCameraFrame);
+            cameraManager.OnCameraFrame.RemoveListener(OnCameraFrame);
             // Dispose model
             model?.Dispose();
         }
