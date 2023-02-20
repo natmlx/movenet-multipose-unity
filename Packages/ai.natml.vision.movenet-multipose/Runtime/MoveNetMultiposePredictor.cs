@@ -7,6 +7,7 @@ namespace NatML.Vision {
 
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using NatML.Features;
     using NatML.Internal;
     using NatML.Types;
@@ -17,18 +18,6 @@ namespace NatML.Vision {
     public sealed partial class MoveNetMultiposePredictor : IMLPredictor<MoveNetMultiposePredictor.Pose[]> {
 
         #region --Client API--
-        /// <summary>
-        /// Create the MoveNet multi-pose predictor.
-        /// </summary>
-        /// <param name="model">MoveNet multi-pose ML model.</param>
-        /// <param name="minScore">Minimum pose candidate score.</param>
-        /// <param name="smoothing">Apply smoothing filter to detected points.</param>
-        public MoveNetMultiposePredictor (MLModel model, float minScore = 0.3f, bool smoothing = true) {
-            this.model = model as MLEdgeModel;
-            this.minScore = minScore;
-            this.filter = smoothing ? new OneEuroFilter(0.5f, 3f, 1f) : null;
-        }
-
         /// <summary>
         /// Detect the body pose in an image.
         /// </summary>
@@ -41,7 +30,12 @@ namespace NatML.Vision {
             // Check type
             var input = inputs[0];
             if (!MLImageType.FromType(input.type))
-                throw new ArgumentException(@"MoveNet multi-pose predictor expects an an array or image feature", nameof(inputs));     
+                throw new ArgumentException(@"MoveNet multi-pose predictor expects an an array or image feature", nameof(inputs));
+            // Pre-process image
+            if (input is MLImageFeature imageFeature) {
+                (imageFeature.mean, imageFeature.std) = model.normalization;
+                imageFeature.aspectMode = model.aspectMode;
+            } 
             // Predict
             using var inputFeature = (input as IMLEdgeFeature).Create(model.inputs[0]);
             using var outputFeatures = model.Predict(inputFeature);
@@ -58,7 +52,32 @@ namespace NatML.Vision {
                 if (pose.score >= minScore)
                     result.Add(pose);
             }
+            // Return
             return result.ToArray();
+        }
+
+        /// <summary>
+        /// Dispose the predictor and release resources.
+        /// </summary>
+        public void Dispose () => model.Dispose();
+
+        /// <summary>
+        /// Create the MoveNet multi-pose predictor.
+        /// </summary>
+        /// <param name="smoothing">Apply smoothing filter to detected points.</param>
+        /// <param name="minScore">Minimum pose candidate score.</param>
+        /// <param name="configuration">Model configuration.</param>
+        /// <param name="accessKey">NatML access key.</param>
+        public static async Task<MoveNetMultiposePredictor> Create (
+            bool smoothing = true,
+            float minScore = 0.3f,
+            MLEdgeModel.Configuration configuration = null,
+            string accessKey = null
+        ) {
+            var filter = smoothing ? new OneEuroFilter(0.5f, 3f, 1f) : null;
+            var model = await MLEdgeModel.Create("@natml/movenet-multipose", configuration, accessKey);
+            var predictor = new MoveNetMultiposePredictor(model, minScore, filter);
+            return predictor;
         }
         #endregion
 
@@ -68,7 +87,11 @@ namespace NatML.Vision {
         private readonly float minScore;
         private readonly OneEuroFilter filter;
 
-        void IDisposable.Dispose () { } // Not used
+        private MoveNetMultiposePredictor (MLModel model, float minScore, OneEuroFilter filter) {
+            this.model = model as MLEdgeModel;
+            this.minScore = minScore;
+            this.filter = filter;
+        }
         #endregion
     }
 }

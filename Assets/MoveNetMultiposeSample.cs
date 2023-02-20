@@ -18,26 +18,18 @@ namespace NatML.Examples {
         [Header(@"UI")]
         public MoveNetMultiposeVisualizer visualizer;
 
-        private MLModelData modelData;
-        private MLModel model;
         private MoveNetMultiposePredictor predictor;
 
         private async void Start () {
-            // Fetch the MoveNet Multipose model data
-            modelData = await MLModelData.FromHub("@natml/movenet-multipose");
-            // Create the model
-            model = new MLEdgeModel(modelData);
             // Create the MoveNet Multipose predictor
-            predictor = new MoveNetMultiposePredictor(model);
+            predictor = await MoveNetMultiposePredictor.Create();
             // Listen for camera frames
             cameraManager.OnCameraFrame.AddListener(OnCameraFrame);
         }
 
         private void OnCameraFrame (CameraFrame frame) {
             // Predict
-            var feature = frame.feature;
-            (feature.mean, feature.std) = modelData.normalization;
-            var poses = predictor.Predict(feature);
+            var poses = predictor.Predict(frame);
             // Visualize
             visualizer.Render(poses);
         }
@@ -45,8 +37,8 @@ namespace NatML.Examples {
         private void OnDisable () {
             // Stop listening for camera frames
             cameraManager.OnCameraFrame.RemoveListener(OnCameraFrame);
-            // Dispose model
-            model?.Dispose();
+            // Dispose the predictor
+            predictor?.Dispose();
         }
     }
 }

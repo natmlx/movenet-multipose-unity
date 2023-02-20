@@ -13,7 +13,7 @@ Add the following items to your Unity project's `Packages/manifest.json`:
     }
   ],
   "dependencies": {
-    "ai.natml.vision.movenet-multipose": "1.0.0"
+    "ai.natml.vision.movenet-multipose": "1.0.1"
   }
 }
 ```
@@ -21,12 +21,8 @@ Add the following items to your Unity project's `Packages/manifest.json`:
 ## Predicting Poses in an Image
 First, create the MoveNet Multipose predictor:
 ```csharp
-// Fetch the model data from NatML Hub
-var modelData = await MLModelData.FromHub("@natml/movenet-multipose");
-// Deserialize the model
-var model = modelData.Deserialize();
-// Create the MoveNet predictor
-var predictor = new MoveNetMultiposePredictor(model);
+// Create the MoveNet Multipose predictor
+var predictor = await MoveNetMultiposePredictor.Create();
 ```
 
 Then create an input feature:
