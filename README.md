@@ -23,13 +23,12 @@ Retrieve your access key from [NatML Hub](https://hub.natml.ai/profile) and add 
 - WebGL:
     - Chrome 91+
     - Firefox 90+
+    - Safari 16.4+
 
 ## Resources
-- Join the [NatML community on Discord](https://hub.natml.ai/community).
+- Join the [NatML community on Discord](https://natml.ai/community).
 - See the [NatML documentation](https://docs.natml.ai/unity).
-- See the [VideoKit documentation](https://docs.natml.ai/videokit).
 - Check out [NatML on GitHub](https://github.com/natmlx).
-- Read the [NatML blog](https://blog.natml.ai/).
 - Contact us at [hi@natml.ai](mailto:hi@natml.ai).
 
 Thank you very much!
