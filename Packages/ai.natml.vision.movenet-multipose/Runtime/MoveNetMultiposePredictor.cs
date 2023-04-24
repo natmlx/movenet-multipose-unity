@@ -1,6 +1,6 @@
 /* 
 *   MoveNet Multipose
-*   Copyright (c) 2022 NatML Inc. All Rights Reserved.
+*   Copyright © 2023 NatML Inc. All Rights Reserved.
 */
 
 namespace NatML.Vision {
@@ -18,6 +18,11 @@ namespace NatML.Vision {
     public sealed partial class MoveNetMultiposePredictor : IMLPredictor<MoveNetMultiposePredictor.Pose[]> {
 
         #region --Client API--
+        /// <summary>
+        /// Predictor tag.
+        /// </summary>
+        public const string Tag = "@natml/movenet-multipose";
+
         /// <summary>
         /// Detect the body pose in an image.
         /// </summary>
@@ -75,7 +80,7 @@ namespace NatML.Vision {
             string accessKey = null
         ) {
             var filter = smoothing ? new OneEuroFilter(0.5f, 3f, 1f) : null;
-            var model = await MLEdgeModel.Create("@natml/movenet-multipose", configuration, accessKey);
+            var model = await MLEdgeModel.Create(Tag, configuration, accessKey);
             var predictor = new MoveNetMultiposePredictor(model, minScore, filter);
             return predictor;
         }
