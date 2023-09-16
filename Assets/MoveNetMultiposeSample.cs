@@ -1,13 +1,13 @@
 /*
-*   MoveNet Multipose
-*   Copyright © 2023 NatML Inc. All Rights Reserved.
-*/
+ *   MoveNet Multipose
+ *   Copyright © 2023 NatML Inc. All Rights Reserved.
+ */
 
 namespace NatML.Examples {
 
     using UnityEngine;
-    using NatML.VideoKit;
-    using NatML.Vision;
+    using VideoKit;
+    using Vision;
     using Visualizers;
 
     public class MoveNetMultiposeSample : MonoBehaviour {

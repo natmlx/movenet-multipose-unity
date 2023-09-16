@@ -3,11 +3,17 @@ Library/
 Temp/
 obj/
 Logs/
+UserSettings/
+
+#vs
+*.csproj
+*.sln
 
 # IDE
 .vscode/
 .gradle/
 .vs/
+.idea/
 
 # NatML
 Assets/NatML/
