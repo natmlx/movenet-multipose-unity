@@ -1,11 +1,11 @@
 {
     "name": "ai.natml.vision.movenet-multipose",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "displayName": "MoveNet Multipose",
     "description": "MediaPipe MoveNet multiple-pose detection in Unity Engine.",
-    "unity": "2021.2",
+    "unity": "2022.3",
     "dependencies": {
-        "ai.natml.natml": "1.1.5"
+        "ai.natml.natml": "1.1.15"
     },
     "keywords": [
         "natml",

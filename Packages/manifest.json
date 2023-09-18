@@ -4,13 +4,12 @@
       "name": "NatML",
       "url": "https://registry.npmjs.com",
       "scopes": [
-        "ai.natml",
-        "ai.fxn"
+        "ai.fxn",
+        "ai.natml"
       ]
     }
   ],
   "dependencies": {
-    "ai.natml.natml": "1.1.15",
     "ai.natml.videokit": "0.0.14",
     "com.unity.ai.navigation": "1.1.4",
     "com.unity.collab-proxy": "2.0.7",

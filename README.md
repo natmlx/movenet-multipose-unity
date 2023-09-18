@@ -7,7 +7,7 @@ Multi-person pose detection from Google MediaPipe.
 ## Running the Sample
 Retrieve your access key from [NatML Hub](https://hub.natml.ai/profile) and add it to your Project Settings. Note that running the sample code requires an active [NatML MediaKit](https://www.natml.ai/pricing) subscription:
 
-![project settings](https://github.com/natmlx/NatDevice/raw/main/.media/key.png)
+![project settings](https://github.com/natmlx/videokit/raw/main/Media/set-access-key.gif)
 
 ## Using the Predictor in a Different Project
 [See the predictor README for more details](Packages/ai.natml.vision.movenet-multipose/README.md).
@@ -17,7 +17,7 @@ Retrieve your access key from [NatML Hub](https://hub.natml.ai/profile) and add 
 
 ## Supported Platforms
 - Android API level 24+
-- iOS 14+
+- iOS 13+
 - macOS 10.15+ (Apple Silicon and Intel)
 - Windows 10+ (64-bit only)
 - WebGL:
