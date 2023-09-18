@@ -8,7 +8,7 @@ namespace NatML.Examples.Visualizers {
     using System.Collections.Generic;
     using UnityEngine;
     using UnityEngine.UI;
-    using NatML.VideoKit.UI;
+    using VideoKit.UI;
     using NatML.Vision;
 
     /// <summary>
