@@ -16,7 +16,7 @@ namespace NatML.Vision {
 
         #region --Client API--
 
-        public OneEuroFilter (float cutoffFrequency, float beta, float derivativeCutoff) {
+        public OneEuroFilter (float cutoffFrequency = 0.5f, float beta = 3f, float derivativeCutoff = 1f) {
             this.cutoffFrequency = cutoffFrequency;
             this.beta = beta;
             this.derivativeCutoff = derivativeCutoff;
