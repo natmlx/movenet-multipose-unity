@@ -39,7 +39,7 @@ namespace NatML.Examples {
             await fxn.Predictions.Create(tag: Tag); // Run this once
             // Predict pose // Run this per-frame
             var prediction = await fxn.Predictions.Create(
-                tag: "@natml/movenet-multipose",
+                tag: Tag,
                 inputs: new () { ["image"] = image.ToImage() }
             );
             // Deserialize
