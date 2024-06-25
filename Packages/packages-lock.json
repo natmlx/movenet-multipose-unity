@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "ai.fxn.fxn3d": {
-      "version": "0.0.14",
+      "version": "0.0.21",
       "depth": 0,
       "source": "registry",
       "dependencies": {
