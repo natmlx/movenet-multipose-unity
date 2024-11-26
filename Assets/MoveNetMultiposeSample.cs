@@ -7,22 +7,21 @@ using UnityEngine;
 using Function;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-//using VideoKit;
+using VideoKit;
+using Function.Types;
 
 [Function.Function.Embed(Tag)]
 public class MoveNetMultiposeSample : MonoBehaviour {
 
-    //[Header(@"Camera")]
-    //public VideoKitCameraManager cameraManager;
-
-    [Header(@"Texture")]
+    [Header(@"Prediction")]
+    public VideoKitCameraManager cameraManager;
     public Texture2D image;
+    public bool realtime;
 
     [Header(@"UI")]
     public PoseVisualizer visualizer;
 
     private Function.Function fxn;
-    private bool predictorLoaded;
 
     /// <summary>
     /// MoveNet Multipose predictor tag on Function.
@@ -31,22 +30,27 @@ public class MoveNetMultiposeSample : MonoBehaviour {
     private const string Tag = "@natml/movenet-multipose";
 
     private async void Start () {
-        // Load the predictor
+        // Preload the predictor
         fxn = FunctionUnity.Create();
-        await fxn.Predictions.Create(tag: Tag); // Run this once
-        predictorLoaded = true;
+        await fxn.Predictions.Create(tag: Tag, inputs: new()); // Run this once
+        // Listen for camera
+        if (!realtime)
+            DetectPoses(image);
+        else {
+            cameraManager.OnCameraFrame.AddListener(OnCameraFrame);
+            await cameraManager.StartRunningAsync();
+        }
     }
+    
+    private void OnCameraFrame () => DetectPoses(cameraManager.texture);
 
-    private void Update () {
-        // Check
-        if (!predictorLoaded)
-            return;
+    private void DetectPoses (Texture2D image) {
         // Predict pose
-        var prediction = fxn.Predictions.Create(
+        Prediction prediction = fxn.Predictions.Create(
             tag: Tag,
             inputs: new () { ["image"] = image.ToImage() }
         ).Result;
-        var poses = (prediction.results[0] as JArray).ToObject<Pose[]>(Pose.Serializer);
+        Pose[] poses = (prediction.results[0] as JArray).ToObject<Pose[]>(Pose.Serializer);
         // Visualize
         visualizer.Render(image, poses);
     }

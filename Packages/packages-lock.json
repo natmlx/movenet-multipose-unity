@@ -1,11 +1,20 @@
 {
   "dependencies": {
     "ai.fxn.fxn3d": {
-      "version": "0.0.21",
+      "version": "0.0.30",
       "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.nuget.newtonsoft-json": "3.2.1"
+      },
+      "url": "https://registry.npmjs.com"
+    },
+    "ai.videokit.videokit": {
+      "version": "0.0.22",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "ai.fxn.fxn3d": "0.0.30"
       },
       "url": "https://registry.npmjs.com"
     },
@@ -161,6 +170,14 @@
       "depth": 1,
       "source": "builtin",
       "dependencies": {}
+    },
+    "com.unity.modules.screencapture": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.imageconversion": "1.0.0"
+      }
     },
     "com.unity.modules.ui": {
       "version": "1.0.0",

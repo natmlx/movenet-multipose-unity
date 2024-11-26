@@ -1,16 +1,19 @@
 {
   "scopedRegistries": [
     {
-      "name": "NatML",
+      "name": "VideoKit",
       "url": "https://registry.npmjs.com",
-      "scopes": [
-        "ai.fxn",
-        "ai.natml"
-      ]
+      "scopes": ["ai.videokit"]
+    },
+    {
+      "name": "Function",
+      "url": "https://registry.npmjs.com",
+      "scopes": ["ai.fxn"]
     }
   ],
   "dependencies": {
-    "ai.fxn.fxn3d": "0.0.22",
+    "ai.fxn.fxn3d": "0.0.30",
+    "ai.videokit.videokit": "0.0.22",
     "com.unity.feature.development": "1.0.1",
     "com.unity.ide.rider": "3.0.28",
     "com.unity.ide.visualstudio": "2.0.22",
@@ -21,6 +24,7 @@
     "com.unity.modules.audio": "1.0.0",
     "com.unity.modules.imageconversion": "1.0.0",
     "com.unity.modules.imgui": "1.0.0",
+    "com.unity.modules.screencapture": "1.0.0",
     "com.unity.modules.ui": "1.0.0",
     "com.unity.modules.uielements": "1.0.0",
     "com.unity.modules.unitywebrequest": "1.0.0",

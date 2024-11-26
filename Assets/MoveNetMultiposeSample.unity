@@ -416,10 +416,6 @@ MonoBehaviour:
   OnPresent:
     m_PersistentCalls:
       m_Calls: []
-    m_CallsDirty: 1
-  rawImage: {fileID: 0}
-  aspectFitter: {fileID: 0}
-  presented: 0
 --- !u!114 &757436794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -534,8 +530,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1001128441}
-  - component: {fileID: 1001128443}
   - component: {fileID: 1001128442}
+  - component: {fileID: 1001128443}
   m_Layer: 0
   m_Name: MoveNetMultiposeSample
   m_TagString: Untagged
@@ -570,7 +566,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e76b2140702f40fc95129d6a585c9c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraManager: {fileID: 1001128443}
   image: {fileID: 2800000, guid: 8af0012b5fac44e02acefedc19a16770, type: 3}
+  realtime: 1
   visualizer: {fileID: 757436792}
 --- !u!114 &1001128443
 MonoBehaviour:
@@ -584,8 +582,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98622613d505143a9a06b4b11b0a82cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  capabilities: 2
-  playOnAwake: 1
+  capabilities: 0
+  playOnAwake: 0
   _facing: 0
   resolution: 3
   frameRate: 30
@@ -594,8 +592,6 @@ MonoBehaviour:
   OnCameraFrame:
     m_PersistentCalls:
       m_Calls: []
-    m_CallsDirty: 1
-  startRunningOnAppResume: 0
 --- !u!1 &1085039465
 GameObject:
   m_ObjectHideFlags: 0
