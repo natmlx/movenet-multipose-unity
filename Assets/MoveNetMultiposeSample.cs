@@ -1,7 +1,7 @@
 /*
- *   MoveNet Multipose
- *   Copyright © 2024 NatML Inc. All Rights Reserved.
- */
+*   MoveNet Multipose
+*   Copyright © 2025 NatML Inc. All Rights Reserved.
+*/
 
 using UnityEngine;
 using Function;
@@ -9,12 +9,16 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VideoKit;
 using Function.Types;
+using VideoKit.UI;
 
 [Function.Function.Embed(Tag)]
 public class MoveNetMultiposeSample : MonoBehaviour {
 
-    [Header(@"Prediction")]
+    [Header(@"Camera Preview")]
     public VideoKitCameraManager cameraManager;
+    public VideoKitCameraView cameraView;
+
+    [Header(@"Prediction")]
     public Texture2D image;
     public bool realtime;
 
@@ -37,12 +41,12 @@ public class MoveNetMultiposeSample : MonoBehaviour {
         if (!realtime)
             DetectPoses(image);
         else {
-            cameraManager.OnCameraFrame.AddListener(OnCameraFrame);
+            cameraView.OnCameraFrame.AddListener(OnCameraFrame);
             await cameraManager.StartRunningAsync();
         }
     }
     
-    private void OnCameraFrame () => DetectPoses(cameraManager.texture);
+    private void OnCameraFrame () => DetectPoses(cameraView.texture);
 
     private void DetectPoses (Texture2D image) {
         // Predict pose
