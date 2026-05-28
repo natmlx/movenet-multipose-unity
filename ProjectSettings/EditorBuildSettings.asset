@@ -5,9 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/MoveNetMultiposeSample.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/MoveNetMultiposeCameraSample.unity
+    guid: 7a395fbb5eaeb429f8237a87986f7a88
   m_configObjects:
     ai.natml.hub.settings: {fileID: 11400000, guid: d607451838d784468865e20e15dfd303, type: 2}
     ai.natml.natdevice.settings: {fileID: 11400000, guid: 6e6d931c654d64784889edafb1aaabb1, type: 2}
+  m_UseUCBPForAssetBundles: 0

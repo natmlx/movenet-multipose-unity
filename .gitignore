@@ -16,7 +16,8 @@ UserSettings/
 .vs/
 .idea/
 
-# Function
+# Muna
+ProjectSettings/Muna.asset
 ProjectSettings/Function.asset
 
 # NatML

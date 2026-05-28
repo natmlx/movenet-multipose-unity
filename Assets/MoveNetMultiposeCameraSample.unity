@@ -379,7 +379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AspectMode: 3
+  m_AspectMode: 4
   m_AspectRatio: 1
 --- !u!114 &757436792
 MonoBehaviour:
@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145a5a333d6e14379ae91956c0b3373e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraManager: {fileID: 0}
+  cameraManager: {fileID: 1001128443}
   facing: -1
   viewMode: 0
   focusGesture: 0
@@ -530,9 +530,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1001128441}
-  - component: {fileID: 1001128442}
+  - component: {fileID: 1001128443}
+  - component: {fileID: 1001128444}
   m_Layer: 0
-  m_Name: MoveNetMultiposeSample
+  m_Name: MoveNetMultiposeCameraSample
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -553,7 +554,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1001128442
+--- !u!114 &1001128443
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -562,10 +563,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 1001128439}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e76b2140702f40fc95129d6a585c9c9, type: 3}
+  m_Script: {fileID: 11500000, guid: 98622613d505143a9a06b4b11b0a82cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 2800000, guid: 8af0012b5fac44e02acefedc19a16770, type: 3}
+  capabilities: 0
+  playOnAwake: 1
+  _facing: 2
+  facingRequired: 0
+  resolution: 3
+  frameRate: 30
+  focusMode: 0
+  exposureMode: 0
+--- !u!114 &1001128444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001128439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58c177eab99df4261865d0ea9aa4abfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraView: {fileID: 757436793}
   minConfidence: 0.3
   acceleration: 2
   visualizer: {fileID: 757436792}

@@ -1,11 +1,13 @@
 /*
 *   MoveNet Multipose
-*   Copyright © 2024 NatML Inc. All Rights Reserved.
+*   Copyright © 2026 NatML Inc. All Rights Reserved.
 */
 
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Pose = MoveNetMultipose.Pose;
 
 /// <summary>
 /// Pose visualizer.
@@ -15,8 +17,8 @@ using UnityEngine.UI;
 public sealed class PoseVisualizer : MonoBehaviour {
 
     #region --Inspector--
-    public Image bodyRect;
-    public RectTransform keypoint;
+    [FormerlySerializedAs(@"bodyRect")] public Image bodyRectPrefab;
+    [FormerlySerializedAs(@"keypoint")] public RectTransform keypointPrefab;
     #endregion
 
 
@@ -25,7 +27,7 @@ public sealed class PoseVisualizer : MonoBehaviour {
     /// Render detected poses.
     /// </summary>
     /// <param name="poses">Body poses to render.</param>
-    public void Render (Texture texture, params Pose[] poses) {
+    public void Render(Texture texture, params Pose[] poses) {
         // Show texture
         var rawImage = GetComponent<RawImage>();
         var aspectFitter = GetComponent<AspectRatioFitter>();
@@ -41,20 +43,15 @@ public sealed class PoseVisualizer : MonoBehaviour {
         // Visualize
         foreach (var pose in poses) {
             // Render bounding rect
-            var poseUI = Instantiate(bodyRect, transform);
+            var poseUI = Instantiate(bodyRectPrefab, transform);
             poseUI.gameObject.SetActive(true);
             VisualizeRect(pose, poseUI);
             currentRects.Add(poseUI);
             // Render keypoints
-            foreach (var point in new [] {
-                pose.nose, pose.leftEye, pose.rightEye, pose.leftEar, pose.rightEar, 
-                pose.leftShoulder, pose.rightShoulder, pose.leftElbow, pose.rightElbow,
-                pose.leftWrist, pose.rightWrist, pose.leftHip, pose.rightHip, pose.leftKnee,
-                pose.rightKnee, pose.leftAnkle, pose.rightAnkle
-            }) {
-                var keypointUI = Instantiate(keypoint, transform);
+            foreach (var kp in pose.keypoints) {
+                var keypointUI = Instantiate(keypointPrefab, transform);
                 keypointUI.gameObject.SetActive(true);
-                VisualizeAnchor(point, keypointUI);
+                VisualizeAnchor(kp.position, keypointUI);
                 currentKeypoints.Add(keypointUI);
             }
         }
@@ -66,7 +63,7 @@ public sealed class PoseVisualizer : MonoBehaviour {
     private readonly List<Image> currentRects = new List<Image>();
     private readonly List<RectTransform> currentKeypoints = new List<RectTransform>();
 
-    private void VisualizeRect (Pose pose, Image prefab) {
+    private void VisualizeRect(Pose pose, Image prefab) {
         var rectTransform = prefab.transform as RectTransform;
         var imageTransform = transform as RectTransform;
         rectTransform.anchorMin = 0.5f * Vector2.one;
@@ -76,7 +73,7 @@ public sealed class PoseVisualizer : MonoBehaviour {
         rectTransform.anchoredPosition = Rect.NormalizedToPoint(imageTransform.rect, pose.rect.position);
     }
 
-    private void VisualizeAnchor (Vector2 point, RectTransform anchor) {
+    private void VisualizeAnchor(Vector2 point, RectTransform anchor) {
         var imageTransform = transform as RectTransform;
         anchor.anchorMin = 0.5f * Vector2.one;
         anchor.anchorMax = 0.5f * Vector2.one;

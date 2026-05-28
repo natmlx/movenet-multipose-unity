@@ -8,12 +8,12 @@
     {
       "name": "Function",
       "url": "https://registry.npmjs.com",
-      "scopes": ["ai.fxn"]
+      "scopes": ["ai.muna"]
     }
   ],
   "dependencies": {
-    "ai.fxn.fxn3d": "0.0.38",
-    "ai.videokit.videokit": "0.0.23-alpha.17",
+    "ai.muna.muna": "0.0.53",
+    "ai.videokit.videokit": "1.0.12",
     "com.unity.feature.development": "1.0.2",
     "com.unity.ide.vscode": "1.2.5",
     "com.unity.toolchain.macos-x86_64-linux-x86_64": "2.0.10",
